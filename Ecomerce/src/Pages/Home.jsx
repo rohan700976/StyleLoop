@@ -1,0 +1,88 @@
+import React from 'react'
+import Header from './Header'
+import About from './About'
+import Card from '../Card/Card'
+import Brand from "./Brand"
+import Choose from './Choose'
+import Products from '../Component/Products'
+import tshirt1 from '../assets/t1.jpg';
+import tshirt2 from '../assets/t2.jpg';
+import tshirt3 from '../assets/t3.jpg';
+import tshirt4 from '../assets/t4.jpg';
+import tshirt5 from '../assets/t5.jpg';
+import tshirt6 from '../assets/t6.jpg';
+import tshirt7 from '../assets/t7.jpg';
+import tshirt8 from '../assets/t8.jpg';
+import lehnga from '../assets/womenImg/l3.jpg'
+import jeans from '../assets/j5.jpg'
+import jeans2 from '../assets/j4.jpg'
+import kurti from '../assets/womenImg/k1.jpg'
+import lehnga2 from '../assets/womenImg/l2.jpg'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import Hero from "./Hero";
+import ProductCard from '../Card/ProductCard'
+import Footer from './Footer';
+import FilterSidebar from '../Component/FilterSidebar'
+import Banner from './Banner'
+import LandingPageBanner from "../Component/Banners/LandingPageBanner";
+import BannerImg from '../assets/BannerImage/BannerImg.png'
+import BannerImg2 from '../assets/BannerImage/BannerImg2.png'
+import JacketImg from '../assets/BannerImage/JacketImg.png'
+import ModelGirlImg from '../assets/BannerImage/ModelGirlImg.png'
+import ModelBoyImg from '../assets/BannerImage/ModelBoyImg.png'
+import CoupleImg from '../assets/BannerImage/CoupleImg.png'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+function Home() {
+  return (
+    <div>
+
+      <Hero />
+
+      <Brand />
+      <Swiper
+        spaceBetween={20}
+        slidesPerView={1}
+        loop={true}
+        autoplay={{ delay: 3000 }}
+        pagination={{ clickable: true }}
+        navigation={true}
+        modules={[Pagination, Navigation, Autoplay]}
+        className=" px-6"
+      >
+
+        <SwiperSlide>
+
+          <LandingPageBanner img={ModelGirlImg} bgcolor=" bg-[linear-gradient(287deg,_rgba(98,193,245,1)_0%,_rgba(242,251,252,1)_0%,_rgba(182,172,250,1)_0%,_rgba(204,240,192,1)_28%,_rgba(15,245,229,1)_47%,_rgba(15,245,229,1)_49%,_rgba(182,172,250,1)_100%)]" />
+        </SwiperSlide>
+        <SwiperSlide>
+
+          <LandingPageBanner img={BannerImg} bgcolor='bg-[radial-gradient(circle,_rgba(255,255,255,1)_0%,_rgba(61,171,235,1)_100%)] ' />
+        </SwiperSlide>
+        <SwiperSlide>
+
+          <LandingPageBanner img={JacketImg} bgcolor=" bg-[linear-gradient(287deg,_rgba(12,160,240,1)_0%,_rgba(67,181,235,1)_13%,_rgba(131,205,230,1)_28%,_rgba(169,217,213,1)_49%,_rgba(56,217,211,1)_100%,_rgba(242,251,252,1)_0%)]" />
+        </SwiperSlide>
+        <SwiperSlide>
+
+          <LandingPageBanner img={ModelBoyImg} bgcolor='bg-[linear-gradient(287deg,_rgba(12,160,240,1)_0%,_rgba(242,251,252,1)_0%,_rgba(192,243,242,1)_0%,_rgba(235,248,252,1)_28%,_rgba(145,242,234,1)_49%,_rgba(250,231,157,1)_100%)] ' />
+        </SwiperSlide>
+        <SwiperSlide>
+
+          <LandingPageBanner img={CoupleImg} bgcolor="bg-[linear-gradient(287deg,_rgba(98,193,245,1)_0%,_rgba(242,251,252,1)_0%,_rgba(182,172,250,1)_0%,_rgba(235,248,252,1)_28%,_rgba(83,237,224,1)_47%,_rgba(83,237,224,1)_49%,_rgba(182,172,250,1)_100%)]" />
+        </SwiperSlide>
+        
+      </Swiper>
+
+      <Products/>
+      {/* <Banner /> */}
+      <Choose/>
+
+      {/* <About /> */}
+    </div>
+  )
+}
+export default Home;
