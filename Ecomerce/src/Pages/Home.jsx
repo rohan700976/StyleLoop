@@ -52,7 +52,7 @@ function Home() {
         }
         if(res.status== 200){
           const data = ([...response.data, ...res.data]);
-          setdetails(data.sort(() => Math.random() - 0.5));
+          setDetails(data.sort(() => Math.random() - 0.5));
         }
 
       
