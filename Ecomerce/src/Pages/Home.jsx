@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import Header from './Header'
 import About from './About'
 import Card from '../Card/Card'
@@ -36,7 +36,39 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+import axios from 'axios'
+
 function Home() {
+    const [details, setDetails] = useState([]);
+
+  useEffect(()=>{
+    const handleProductDetails= async ()=>{
+    try {
+      const response=await axios.get("http://localhost:8000/menshirt/shirt");
+      const res=await axios.get("http://localhost:8000/womenshirt/shirt")
+    // console.log(res);
+        if(response.status == 200 ){
+           setDetails( response.data);
+        }
+        if(res.status== 200){
+          const data = ([...response.data, ...res.data]);
+          setdetails(data.sort(() => Math.random() - 0.5));
+        }
+
+      
+    } catch (error) {
+      console.log(error);
+      
+    }
+
+  }
+   handleProductDetails();
+  },[]);
+
+  // useEffect(()=>{
+  // console.log(details)
+  // },[details]);
+  
   return (
     <div>
 
@@ -77,7 +109,7 @@ function Home() {
         
       </Swiper>
 
-      <Products/>
+      <Products details = {details}/>
       {/* <Banner /> */}
       <Choose/>
 
