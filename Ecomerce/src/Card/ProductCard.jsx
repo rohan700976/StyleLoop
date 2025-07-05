@@ -2,13 +2,15 @@ import React from 'react'
 import Tshirt from '../assets/t1.jpg'
 
 function ProductCard(props) {
+   //console.log(props);
+  // console.log(props.product.Brand_Name);
   return (
     <div className="w-40 sm:w-68 h-102  sm:h-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white relative group">
   {/* Product Image */}
-
+  
   <div className="w-full h-60 bg-gray-100 overflow-hidden">
     <img
-      src={props.img}
+      src={props.product.img}
       alt="T-shirt"
       className="w-full h-60 object-cover transform group-hover:scale-105  duration-300"
     />
@@ -16,13 +18,13 @@ function ProductCard(props) {
 
   {/* Product Info */}
   <div className="p-2 space-y-1 pl-4">
-    <span className="text-md   tracking-wide text-bold text-pink-600">TOMMY HILFIGER</span>
-    <p className="text-xs font-semibold text-green-600">Round Neck T-shirt</p>
+    <span className="text-md   tracking-wide text-bold text-pink-600">{props.product.Brand_Name}</span>
+    <p className="text-xs font-semibold text-green-600">{props.product.Product_Name}</p>
 
     {/* Price Section */}
     <div className="flex items-center gap-3">
-      <span className="text-indigo-600 font-bold text-lg">₹499</span>
-      <span className="line-through text-pink-400 text-sm">₹1299</span>
+      <span className="text-indigo-600 font-bold text-lg">{props.product.Discounted_Price}</span>
+      <span className="line-through text-pink-400 text-sm">{props.product.Actual_Price}</span>
     </div>
   </div>
 

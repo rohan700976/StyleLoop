@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect , useState} from 'react'
 import FilterSidebar from './FilterSidebar'
 import ProductCard from '../Card/ProductCard'
 import demo from '../assets/Rohan.jpg'
+import axios from 'axios'
 
-const Products = () => {
+const Products = ({details}) => {
+  console.log(details);
+  
+
+
   return (
     <div className="flex gap-4 p-6">
         {/* Sidebar */}
@@ -14,17 +19,11 @@ const Products = () => {
 
         {/* Cards Section */}
 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 flex-1 h-415 sm:h-210">
-
-          <ProductCard img={demo} price="599" />
-          <ProductCard img={demo} price="699" />
-          <ProductCard img={demo} price="599" />
-          <ProductCard img={demo} price="699" />
-          <ProductCard img={demo} price="599" />
-          <ProductCard img={demo} price="699" />
-          <ProductCard img={demo} price="599" />
-          <ProductCard img={demo} price="699" />
-        </div>
-      </div>
+  {details.map((product, index) => (
+    <ProductCard key={index} product={product} />
+  ))}
+</div>
+</div>
   )
 }
 
