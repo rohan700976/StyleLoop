@@ -31,7 +31,7 @@ function Tshirt() {
   return (
   <div className="mt-15 ">
     
-     <Products details={{details}}/>
+     <Products detail={details}/>
    </div>
   )
 }

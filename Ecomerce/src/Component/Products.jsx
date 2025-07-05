@@ -4,8 +4,8 @@ import ProductCard from '../Card/ProductCard'
 import demo from '../assets/Rohan.jpg'
 import axios from 'axios'
 
-const Products = ({details}) => {
-  console.log(details);
+const Products = ({details,detail}) => {
+  // console.log(shirtDetails);
   
 
 
@@ -18,13 +18,23 @@ const Products = ({details}) => {
 
 
         {/* Cards Section */}
-<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 flex-1 h-415 sm:h-210">
-  {details.map((product, index) => (
-    <ProductCard key={index} product={product} />
-  ))}
-</div>
-</div>
-  )
-}
 
-export default Products
+
+<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 flex-1">
+
+        {detail != null ? (
+          detail.map((product, index) => (
+            <ProductCard key={index} product={product} />
+          ))
+        ) : (
+          details.slice(0, 8).map((product, index) => (
+            <ProductCard key={index} product={product} />
+          ))
+          
+        )}
+      </div>
+
+</div>
+)}
+
+export default Products;
