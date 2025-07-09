@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from 'react'
+import { useEffect, useState } from "react";
 import Products from "../Component/Products.jsx";
 import axios from "axios";
 
-function Shirt() {
-  const tableName="menshirt"
-  const [shirt,setShirt]=useState([]);
+function KidsShirt() {
+  const tableName="kidsboyskurta";
+   const [kidsShirtDetails,setKidsShirtDetails]=useState([]);
   useEffect( ()=>{
      const handleProductDetails= async()=>{
     try {
-    const respone= await axios.get('http://localhost:8000/menshirt/shirt');
+    const respone= await axios.get('http://localhost:8000/kids/kidsboyskurta');
     if(respone.status==200){
-      setShirt(respone.data)
+     setKidsShirtDetails(respone.data)
 
     }
     
@@ -32,9 +33,9 @@ function Shirt() {
   return (
    <div className="mt-15 ">
 
-     <Products detail={shirt} tableName={tableName} setDetails={setShirt}/>
+     <Products detail={kidsShirtDetails} tableName={tableName} setDetails={setKidsShirtDetails}/>
    </div>
   );
 }
 
-export default Shirt;
+export default KidsShirt

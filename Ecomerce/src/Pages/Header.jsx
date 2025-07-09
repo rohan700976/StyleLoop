@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ShoppingCart, Menu, X, Search, UserCircle } from "lucide-react";
-import { Link } from "react-router-dom";
+import { href, Link } from "react-router-dom";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,6 +16,7 @@ export default function Header() {
         { name: "Tshirt", href: "/men/tshirt" },
         { name: "Shirt", href: "/men/shirt" },
         { name: "Jeans", href: "/men/jeans" },
+        
       ],
     },
     {
@@ -25,9 +26,22 @@ export default function Header() {
         { name: "Lehnga", href: "/women/lehnga" },
         { name: "Kurti", href: "/women/kurti" },
         { name: "GirlJeans", href: "/women/girljeans" },
+        { name:"GirlShirt", href: "/women/girlshirt"}
       ],
     },
-    { name: "Kids", href: "/kids", hover: true },
+    { name: "Kids", 
+       hover: true,
+       submenu: [
+        { name:"KidsTshirt", href: "/kids/kidsTshirt"},
+        { name: "kidsjeans", href: "/kids/kidsJeans" },
+        { name: "BoyShirt", href: "/kids/kidsShirt" },
+        { name: "kidsGirlTop", href: "/kids/kidsGirTop" },
+        // {name: "kidsGirlJeans" , href: "/kids/kidsJeans"},
+        {name: "kidsGirlScart", href: "/kids/kidsGirlSkirt"},
+         { name: "KidsGirlKurti", href: "/kids/kidsGirlKurti" }
+
+      ],
+       },
     { name: "About", href: "/about", hover: true },
   ];
 

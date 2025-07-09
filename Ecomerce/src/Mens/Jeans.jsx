@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Products from '../Component/Products';
 import axios from 'axios';
 function Jeans() {
+  const tableName="mensjeans";
    const [jeansDetails,setJeansDetails]=useState([]);
   useEffect(()=>{
    
@@ -29,7 +30,7 @@ function Jeans() {
     <div className="mt-15 ">
       <h1>helo</h1>
 
-     <Products detail={jeansDetails}/>
+     <Products detail={jeansDetails} tableName={tableName} setDetails={setJeansDetails}/>
    </div>
   );
 }

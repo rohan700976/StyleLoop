@@ -4,16 +4,16 @@ import ProductCard from '../Card/ProductCard'
 import demo from '../assets/Rohan.jpg'
 import axios from 'axios'
 
-const Products = ({details,detail}) => {
+const Products = ({details,detail,tableName,setDetails}) => {
   // console.log(shirtDetails);
-  
+  // console.log("bgfbfghbp",price);
 
 
   return (
     <div className="flex gap-4 p-6">
         {/* Sidebar */}
         <div className="w-full max-w-xs hidden sm:block">
-  <FilterSidebar />
+  <FilterSidebar tableName = {tableName} setDetails={setDetails} details={detail}/>
 </div>
 
 

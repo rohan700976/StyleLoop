@@ -1,18 +1,18 @@
+
 import React from 'react'
 import { useEffect, useState } from "react";
 import Products from "../Component/Products.jsx";
 import axios from "axios";
 
-
-function Lehnga() {
-  const tableName="womanlehenga"
-  const [lehngaDetails,setLehngaDetails]=useState([]);
+function KidsGirlSkirt() {
+  const tableName="kidsgirlsskirts";
+  const [GirlSkirtDetails,setGirlSkirtDetails]=useState([]);
   useEffect( ()=>{
      const handleProductDetails= async()=>{
     try {
-    const respone= await axios.get('http://localhost:8000/women/womanlehenga');
+    const respone= await axios.get('http://localhost:8000/kids/kidsgirlsskirts');
     if(respone.status==200){
-      setLehngaDetails(respone.data)
+      setGirlSkirtDetails(respone.data)
 
     }
     
@@ -34,9 +34,9 @@ function Lehnga() {
   return (
    <div className="mt-15 ">
 
-     <Products detail={lehngaDetails} tableName={tableName} setDetails={setLehngaDetails}/>
+     <Products detail={GirlSkirtDetails} tableName={tableName} setDetails={setGirlSkirtDetails}/>
    </div>
   );
 }
 
-export default Lehnga;
+export default KidsGirlSkirt
