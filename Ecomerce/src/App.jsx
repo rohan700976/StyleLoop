@@ -2,6 +2,14 @@
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
 import React, { useState } from "react";
 // import "./style.css";
+import KidsGirlKurti from './kids/kidsGirlKurti.jsx';
+import KidsGirlSkirt from './kids/kidsGirlSkirt.jsx';
+import KidsGirlTop from './kids/kidsGirlTop.jsx';
+import KidsJeans from './kids/kidsJeans.jsx';
+import KidsShirt from './kids/kidsShirt.jsx';
+import KidsTshirt from './kids/kidsTshirt.jsx';
+
+import GirlShirt from './Women/girlShirt.jsx';
 import Tshirt from './Mens/Tshirt.jsx'
 import Shirt from './Mens/Shirt.jsx'
 import Jeans from './Mens/Jeans.jsx'
@@ -30,13 +38,27 @@ const router = createBrowserRouter(
       <Route path='women/kurti' element={<Kurti/>}/>
         <Route path='women/lehnga' element={<Lehnga/>}/>
           <Route path='women/girljeans' element={<GirlJeans/>}/>
+          <Route path='women/girlshirt' element={<GirlShirt/>}/>
+
+
+          {/* kids Route */}
+
+           {/* <Route path='kids/kidsGirlJeans' element={<kidsGirlJeans/>}/> */}
+          <Route path='kids/kidsGirlKurti' element={<KidsGirlKurti/>}/>
+          <Route path='kids/kidsGirlSkirt' element={<KidsGirlSkirt/>}/>
+          <Route path='kids/kidsGirTop' element={< KidsGirlTop />}/>
+          <Route path='kids/kidsJeans' element={<KidsJeans/>}/>
+          <Route path='kids/kidsShirt' element={<KidsShirt/>}/>
+          <Route path='kids/kidsTshirt' element={<KidsTshirt/>}/>
+          
+          
           <Route path="product" element={<ProductDetails MRP="7500" price="2500" />} />
            <Route path='about' element={<About/>}/>
-    </Route>
+     </Route>
            {/* <Route path="/login" element={<Login/>}/>
            <Route path='/signup' element={<Signup/>}/> */}
            <Route path='/auth' element={<Auth/>} />
-           </Route>
+     </Route>
   )
 )
 

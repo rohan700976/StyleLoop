@@ -45,8 +45,9 @@ function Home() {
     const handleProductDetails= async ()=>{
     try {
       const response=await axios.get("http://localhost:8000/menshirt/shirt");
-      const res=await axios.get("http://localhost:8000/womenshirt/shirt")
-    // console.log(res);
+      const res=await axios.get("http://localhost:8000/women/womanshirt");
+        // console.log(res);
+        // console.log(response);
         if(response.status == 200 ){
            setDetails( response.data);
         }

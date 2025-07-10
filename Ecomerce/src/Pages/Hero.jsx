@@ -70,7 +70,8 @@ const ShuffleGrid = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 mt- grid-rows-4 gap-2 h-[400px] sm:h-[500px] md:h-[600px] w-full">
+    <div className="  mt-14 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 mt- grid-rows-4 gap-4
+     h-[400px] sm:h-[500px] md:h-[600px] w-full">
       {squares}
     </div>
   );
@@ -93,7 +94,7 @@ const Hero = () => {
   return (
     <motion.section
       style={{ backgroundImage }}
-      className="w-full border border-amber-400 px-4 sm:px-6 md:px-12 py-10 md:py-16 grid grid-cols-1 md:grid-cols-2 items-center gap-8 text-gray-200"
+      className="w-full h-screen  px-4 sm:px-6 md:px-12 py-10 md:py-16 grid grid-cols-1 md:grid-cols-2 items-center gap-8 text-gray-200"
     >
       <div className="space-y-4 text-center md:text-left">
         <TrueFocus

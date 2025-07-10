@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Products from '../Component/Products';
 import axios from 'axios'
+import FilterSidebar from '../Component/FilterSidebar';
+
 
 function Tshirt() {
+  
   const [details,setDetails]=useState([]);
+  const tableName = "menstshirt";
+  // setDetails(tableName);
 
   useEffect(()=>{
   const  handleProductDetails= async ()=>{
@@ -22,16 +27,19 @@ function Tshirt() {
   handleProductDetails();
   },[])
 
-  useEffect(()=>{
-    //console.log(details);
-  },[details]);
+  // useEffect(()=>{
+  //   //console.log(details);
+  // },[details]);
 
   
   
   return (
   <div className="mt-15 ">
-    
-     <Products detail={details}/>
+    {/* <div className="w-full max-w-xs hidden sm:block">
+      <FilterSidebar tableName = {tableName}  setDetails={setDetails}/>
+    </div>
+     */}
+     <Products detail={details} tableName={tableName} setDetails={setDetails}/>
    </div>
   )
 }
