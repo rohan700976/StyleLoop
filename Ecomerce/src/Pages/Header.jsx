@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { ShoppingCart, Menu, X, Search, UserCircle } from "lucide-react";
-import { href, Link } from "react-router-dom";
+import { FaRegHeart } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import logoImg from '../assets/headerLogo/logo.png';
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,7 +18,6 @@ export default function Header() {
         { name: "Tshirt", href: "/men/tshirt" },
         { name: "Shirt", href: "/men/shirt" },
         { name: "Jeans", href: "/men/jeans" },
-        
       ],
     },
     {
@@ -26,22 +27,21 @@ export default function Header() {
         { name: "Lehnga", href: "/women/lehnga" },
         { name: "Kurti", href: "/women/kurti" },
         { name: "GirlJeans", href: "/women/girljeans" },
-        { name:"GirlShirt", href: "/women/girlshirt"}
+        { name: "GirlShirt", href: "/women/girlshirt" }
       ],
     },
-    { name: "Kids", 
-       hover: true,
-       submenu: [
-        { name:"KidsTshirt", href: "/kids/kidsTshirt"},
+    {
+      name: "Kids",
+      hover: true,
+      submenu: [
+        { name: "KidsTshirt", href: "/kids/kidsTshirt" },
         { name: "kidsjeans", href: "/kids/kidsJeans" },
         { name: "BoyShirt", href: "/kids/kidsShirt" },
         { name: "kidsGirlTop", href: "/kids/kidsGirTop" },
-        // {name: "kidsGirlJeans" , href: "/kids/kidsJeans"},
-        {name: "kidsGirlScart", href: "/kids/kidsGirlSkirt"},
-         { name: "KidsGirlKurti", href: "/kids/kidsGirlKurti" }
-
+        { name: "kidsGirlScart", href: "/kids/kidsGirlSkirt" },
+        { name: "KidsGirlKurti", href: "/kids/kidsGirlKurti" }
       ],
-       },
+    },
     { name: "About", href: "/about", hover: true },
   ];
 
@@ -58,8 +58,14 @@ export default function Header() {
 
   return (
     <>
-      <header className={`fixed w-full  top-0 z-20 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-[rgba(255,255,250,0.9)]'}`}>
-        <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <header className={`fixed w-full top-0 z-20 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-[rgba(255,255,250,0.9)]'}`}>
+       
+       <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+       {/* <div className="h-[60px] w-[60px] flex items-center justify-center">
+  <img src={logoImg} alt="Logo" className="max-w-full max-h-full object-contain" />
+</div> */}
+
+          
           <div className="text-3xl font-bold text-indigo-600 hover:text-indigo-800">StyleLoop</div>
 
           <div className="hidden md:flex items-center relative mx-6 w-1/3 group">
@@ -101,6 +107,7 @@ export default function Header() {
               )
             )}
 
+            {/* Profile Icon */}
             <div className="relative group">
               <UserCircle className="w-6 h-6 text-indigo-600 cursor-pointer hover:text-indigo-800" />
               <div className="absolute right-0 mt-2 bg-[rgba(255,255,250,0.9)] shadow-md rounded-md opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200 z-50 w-40">
@@ -108,6 +115,12 @@ export default function Header() {
                 <button className="block w-full text-left px-4 py-2 hover:text-indigo-800 hover:bg-white text-sm">Sign Up</button>
               </div>
             </div>
+
+            {/* Wishlist Icon Stacked with Text */}
+            <Link to="/wishlist" className="flex flex-col items-center text-indigo-600 hover:text-indigo-800 text-sm ">
+              <FaRegHeart className="w-5 h-5 " />
+              <span className="font-semibold">Wishlist</span>
+            </Link>
           </nav>
 
           <button onClick={toggleMenu} className="md:hidden">
@@ -135,10 +148,16 @@ export default function Header() {
                 {link.name}
               </Link>
             ))}
+            {/* Wishlist in mobile menu */}
+            <Link to="/wishlist" className="flex items-center gap-2 text-indigo-600 hover:text-indigo-800" onClick={() => setMenuOpen(false)}>
+              <FaRegHeart className="w-5 h-5" />
+              Wishlist
+            </Link>
           </div>
         )}
       </header>
 
+      {/* Login Modal */}
       {showLoginModal && (
         <div className="fixed inset-0 bg-black bg-opacity-30 flex justify-center items-center z-50 px-2">
           <div className="bg-white rounded-lg shadow-xl w-full max-w-4xl flex flex-col md:flex-row overflow-hidden">

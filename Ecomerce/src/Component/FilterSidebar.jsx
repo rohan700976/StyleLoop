@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import Products from "./Products";
 import axios from 'axios';
-import { Sidebar } from "lucide-react";
 
-export default function FilterSidebar({tableName,details, setDetails}) {
+export default function FilterSidebar({ tableName, details, setDetails }) {
   const [openCategory, setOpenCategory] = useState(false);
   const [openPrice, setOpenPrice] = useState(false);
   const [openFabric, setOpenFabric] = useState(false);
@@ -12,12 +10,7 @@ export default function FilterSidebar({tableName,details, setDetails}) {
   const [openSize, setOpenSize] = useState(false);
   const [openBrand, setOpenBrand] = useState(false);
   const [openAvailability, setOpenAvailability] = useState(false);
-  const [fabric, setFabric] = useState('');
-  const [size,setSize]=useState('')
-  const [brand,setBrand]=useState('');
-  const [price,setPrice]=useState('')
-  const [rating,setRating]=useState('');
-  const [occasion,setOccasion]=useState('');
+
 
   const [priceToogle, setPriceToogle] = useState(false);
   const [brandToogle, setBrandToogle] = useState(false);
@@ -25,177 +18,132 @@ export default function FilterSidebar({tableName,details, setDetails}) {
   const [occasionToogle, setOccasionToogle] = useState(false);
   const [ratingToogle, setRatingToogle] = useState(false);
   const [sizeToogle, setSizeToogle] = useState(false);
-  const [temp, setTemp] = useState([]);
 
-
-  // Fabric Sidebar
   const handleFabric = async (event) => {
-  const selectedFabric = event.target.value;
-  setFabric(selectedFabric);
+    const selectedFabric = event.target.value;
 
-  try {
-    if (priceToogle || occasionToogle || brandToogle || ratingToogle || sizeToogle) {
-      if (Array.isArray(details)) {
+    try {
+      if (priceToogle || occasionToogle || brandToogle || ratingToogle || sizeToogle) {
         const filtered = details.filter(item => item.Fabric === selectedFabric);
         console.log(filtered);
         setDetails(filtered);
       } else {
-        console.warn("Details is not an array:", details);
+        const res = await axios.get(`http://localhost:8000/filter/${tableName}/fabric/${selectedFabric}`);
+        setDetails(res.data);
       }
+      setFabricToogle(true);
+    } catch (err) {
+      console.error("Fabric filter error:", err);
     }
-    else{const resFabric = await axios.get(`http://localhost:8000/filter/${tableName}/fabric/${selectedFabric}`);
-    console.log(selectedFabric);
-    console.log(resFabric.data); // Use `.data` to get actual response
-    setDetails(resFabric.data);
-    setFabricToogle(!fabricToogle);}
-  } catch (err) {
-    console.error("Fabric filter error:", err);
-  }
-};
+  };
 
+    const handleSize = async (event) => {
+    const selectedSize = event.target.value;
 
-// size Sidebar
-const handleSize=async (event)=>{
-  const selectedSize=event.target.value;
-  // setSize(selectedSize);
-  console.log("hello");
-
-  try {
-    if (priceToogle || occasionToogle || brandToogle || ratingToogle || fabricToogle) {
-      if (Array.isArray(details)) {
+    try {
+      if (priceToogle || occasionToogle || brandToogle || ratingToogle || fabricToogle) {
         const filtered = details.filter(item => item.Size === selectedSize);
         console.log(filtered);
         setDetails(filtered);
       } else {
-        console.warn("Details is not an array:", details);
+        const res = await axios.get(`http://localhost:8000/filter/${tableName}/size/${selectedSize}`);
+        setDetails(res.data);
       }
-    }
-   else {const resSize=await axios.get(`http://localhost:8000/filter/${tableName}/size/${selectedSize}`);
-    console.log(selectedSize);
-    console.log(resSize.data);
-    setDetails(resSize.data);
-    setSizeToogle(!sizeToogle);}
-    
-  } catch (error) {
-    console.log("size error", error);
-  }
-}
-  const handleBrand=async(event)=>{
-    const selectedBrandValue=event.target.value;
-    // setBrand(selectedBrandValue);
-    try {
-      const resBrand= await axios.get(`http://localhost:8000/filter/${tableName}/brand/${selectedBrandValue}`)
-      console.log(selectedBrandValue);
-      console.log(resBrand)
-      setDetails(resBrand.data);
+      setSizeToogle(true);
     } catch (error) {
-       console.log("brand error",error)      
+      console.error("Size filter error:", error);
     }
+  };
 
-  }
-
-  //  price sidebar
-  const handlePrice=async (event)=>{
-  const selectedPrice=event.target.value;
-  const parts=selectedPrice.split('-');
-  
-  const price1 = parseInt(parts[0].substring(1));
-  const price2 = parseInt(parts[1].trim().substring(1));
- 
-  console.log(price1);
-  console.log(price2);
-  // setPrice(selectedPrice);
-
-  try {
-    if(fabricToogle || occasionToogle || ratingToogle || brandToogle || sizeToogle){
-      for(let i = 0 ; i < details.length() ; i++){
-        if(details[i].Discounted_Price >=parseInt(price1) && details[i].Discounted_Price <= parseInt(price2)){
-          setTemp(details[i]);
-        }
-      }
-      setDetails(temp);
-      
-    }
-   else{ const resPrice=await axios.get(`http://localhost:8000/filter/${tableName}/price/${parseInt(price1)}/${parseInt(price2)}`);
-    // console.log(selectedPrice);
-    // console.log(parts[0]);
-    // console.log(parts[1].trim());
-    console.log(resPrice.data);
-    setDetails(resPrice.data);
-    setPriceToogle(!priceToogle);}
-    
-  } catch (error) {
-    console.log("size error", error);
-  }
-}
-
-  // rating sidebar
-const handleRating=async (event)=>{
-  const selectedRating=event.target.value;
-  // setRating(selectedRating);
-
-  try {
-  if (priceToogle || occasionToogle || brandToogle || fabricToogle || sizeToogle) {
-    console.log("hello")
-      if (Array.isArray(details)) {
-        console.log("by");
-        const filtered = details.filter(item => item.Rating === selectedRating);
+    const handleBrand = async (event) => {
+    const selectedBrand = event.target.value;
+    try {
+      if (priceToogle || occasionToogle || fabricToogle || ratingToogle || sizeToogle) {
+        const filtered = details.filter(item => item.Brand === selectedBrand);
         console.log(filtered);
         setDetails(filtered);
       } else {
-        console.warn("Details is not an array:", details);
+        const res = await axios.get(`http://localhost:8000/filter/${tableName}/brand/${selectedBrand}`);
+        setDetails(res.data);
       }
+      setBrandToogle(true);
+    } catch (error) {
+      console.error("Brand filter error:", error);
     }
+  };
 
-    else{  const resRating=await axios.get(`http://localhost:8000/filter/${tableName}/rating/${selectedRating}`);
-      console.log(selectedRating);
-      console.log(resRating.data);
-      setDetails(resRating.data);
-      setRatingToogle(!ratingToogle);
-    }  
-  } catch (error) {
-    console.log("size error", error);
-  }
-}
-     // occasion sidebar
-const handleOccasion=async (event)=>{
-  const selectedOccasion=event.target.value;
-  setOccasion(selectedOccasion);
+  const handlePrice = async (event) => {
+    const selectedPrice = event.target.value;
 
-  try {
-    const resOccasion=await axios.get(`http://localhost:8000/filter/${tableName}/occasion/${selectedOccasion}`);
-    console.log(selectedOccasion);
-    console.log(resOccasion.data);
-    setDetails(resOccasion.data);
-    
-  } catch (error) {
-    console.log("size error", error);
-  }
-}
+    const [p1, p2] = selectedPrice.replace(/₹/g, '').split('-').map(p => parseInt(p.trim()));
+
+    try {
+      if (fabricToogle || occasionToogle || ratingToogle || brandToogle || sizeToogle) {
+        const filtered = details.filter(item =>
+          item.Discounted_Price >= p1 && item.Discounted_Price <= p2
+        );
+        console.log(filtered);
+        setDetails(filtered);
+      } else {
+        const res = await axios.get(`http://localhost:8000/filter/${tableName}/price/${p1}/${p2}`);
+        setDetails(res.data);
+      }
+      setPriceToogle(true);
+    } catch (error) {
+      console.error("Price filter error:", error);
+    }
+  };
+
+  const handleRating = async (event) => {
+    const selectedRating = event.target.value;
+    const rating = parseInt(selectedRating);
+
+    try {
+      if (priceToogle || occasionToogle || brandToogle || fabricToogle || sizeToogle) {
+        const filtered = details.filter(item => item.Rating == rating);
+        console.log(filtered);
+        setDetails(filtered);
+      } else {
+        const res = await axios.get(`http://localhost:8000/filter/${tableName}/rating/${selectedRating}`);
+        setDetails(res.data);
+      }
+      setRatingToogle(true);
+    } catch (error) {
+      console.error("Rating filter error:", error);
+    }
+  };
+
+    const handleOccasion = async (event) => {
+    const selectedOccasion = event.target.value;
+    try {
+      if (priceToogle || brandToogle || fabricToogle || ratingToogle || sizeToogle) {
+        const filtered = details.filter(item => item.Occasion === selectedOccasion);
+        console.log(filtered);
+        setDetails(filtered);
+      } else {
+        const res = await axios.get(`http://localhost:8000/filter/${tableName}/occasion/${selectedOccasion}`);
+        setDetails(res.data);
+      }
+      setOccasionToogle(true);
+    } catch (error) {
+      console.error("Occasion filter error:", error);
+    }
+  };
+
+    const handleCategory = async (event) => {
+    const selectedCategory = event.target.value;
+    try {
+      const res = await axios.get(`http://localhost:8000/women/${selectedCategory}`);
+      setDetails(res.data);
+    } catch (error) {
+      console.error("Category filter error:", error);
+    }
+  };
 
 
-const handleCategory=async(event)=>{
-  const selectedCategory=event.target.value;
-  console.log(selectedCategory);
-  try {
-    const resCategory=await axios.get(`http://localhost:8000/women/${selectedCategory}`)
-    // console.log(resLehnga);
-     console.log(resCategory.data);
-     setDetails(resCategory.data);
-
-    
-  } catch (error) {
-   console.log("error in category", error);    
-  }
-
-}
-
-
-
-
-  
-
-
+  const handleFilter = () => {
+    console.log("Handle availability filter here");
+  };
   return (
     <div className="w-full max-w-xs p-4 borderbg-[#F2F2F2] rounded-lg shadow-sm">
       {/* <Products classname='display-none' fabric /> */}
@@ -215,9 +163,9 @@ const handleCategory=async(event)=>{
           <div className="flex flex-col gap-2 text-sm text-gray-700 mb-2">
             {["womanlehenga", "womanjeans", "womenkurtas", "menstshirt", "menshirt", "mensjeans"].map((opt) => (
               <label key={opt} className="flex items-center gap-2">
-                <input type="checkbox" onChange={handleCategory} 
-                 value={opt}
-                className="accent-indigo-600" />
+                <input type="checkbox" onChange={handleCategory}
+                  value={opt}
+                  className="accent-indigo-600" />
                 {opt}
               </label>
             ))}
@@ -237,8 +185,8 @@ const handleCategory=async(event)=>{
             {["Below ₹100", "₹100 - ₹200", "₹200 - ₹500", "₹500 - ₹1000", "₹1000 - ₹2000", "₹2000 - ₹5000"].map((opt) => (
               <label key={opt} className="flex items-center gap-2">
                 <input type="checkbox" onClick={handlePrice}
-                   value={opt}
-                className="accent-indigo-600" />
+                  value={opt}
+                  className="accent-indigo-600" />
                 {opt}
               </label>
             ))}
@@ -258,11 +206,11 @@ const handleCategory=async(event)=>{
             {["Cotton Blend", "Polyester", "Silk", "Linen", "Denim", "Wool", "Rayon", "Nylon", "Georgette", "Chiffon"].map((opt) => (
               <label key={opt} className="flex items-center gap-2">
                 <input
-  type="checkbox"
-  value={opt}
-  onChange={handleFabric}
-  className="accent-indigo-600"
-/>
+                  type="checkbox"
+                  value={opt}
+                  onChange={handleFabric}
+                  className="accent-indigo-600"
+                />
 
                 {opt}
               </label>
@@ -282,9 +230,9 @@ const handleCategory=async(event)=>{
           <div className="flex flex-col gap-2 text-sm text-gray-700 mb-2">
             {["1 Star", "2 Stars", "3 Stars", "4 Stars", "5 Stars"].map((opt) => (
               <label key={opt} className="flex items-center gap-2">
-                <input type="checkbox" onClick={handleRating} 
-                   value={opt}
-                className="accent-indigo-600" />
+                <input type="checkbox" onClick={handleRating}
+                  value={opt}
+                  className="accent-indigo-600" />
                 {opt}
               </label>
             ))}
@@ -303,9 +251,9 @@ const handleCategory=async(event)=>{
           <div className="flex flex-col gap-2 text-sm text-gray-700 mb-2">
             {["Casual", "Formal", "Party", "Wedding", "Ethnic"].map((opt) => (
               <label key={opt} className="flex items-center gap-2">
-                <input type="checkbox" onChange={handleOccasion} 
-                   value={opt}
-                className="accent-indigo-600" />
+                <input type="checkbox" onChange={handleOccasion}
+                  value={opt}
+                  className="accent-indigo-600" />
                 {opt}
               </label>
             ))}
@@ -322,11 +270,11 @@ const handleCategory=async(event)=>{
         </button>
         {openSize && (
           <div className="flex flex-col gap-2 text-sm text-gray-700 mb-2">
-            {["Free Size","S", "M", "L", "XL", "XXL"].map((opt) => (
+            {["Free Size", "S", "M", "L", "XL", "XXL"].map((opt) => (
               <label key={opt} className="flex items-center gap-2">
                 <input type="checkbox" onChange={handleSize}
-                   value={opt}
-                className="accent-indigo-600" />
+                  value={opt}
+                  className="accent-indigo-600" />
                 {opt}
               </label>
             ))}
@@ -343,11 +291,11 @@ const handleCategory=async(event)=>{
         </button>
         {openBrand && (
           <div className="flex flex-col gap-2 text-sm text-gray-700 mb-2">
-            {["BURDY","SAVON","Nike", "Adidas", "Zara", "Puma", "Levi's"].map((opt) => (
+            {["BURDY", "SAVON", "Nike", "Adidas", "Zara", "Puma", "Levi's"].map((opt) => (
               <label key={opt} className="flex items-center gap-2">
                 <input type="checkbox" onChange={handleBrand}
-                 value={opt}
-                 className="accent-indigo-600" />
+                  value={opt}
+                  className="accent-indigo-600" />
                 {opt}
               </label>
             ))}

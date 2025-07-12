@@ -24,6 +24,8 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Login from './Auth/Login.jsx'
 import Signup from './Auth/Signup.jsx'
 import Auth from "./Auth/Auth.jsx"
+import Wishlist from './Pages/Wishlist.jsx';
+import AddToCart from './Pages/AddToCart.jsx';
 
 
 const router = createBrowserRouter(
@@ -54,6 +56,10 @@ const router = createBrowserRouter(
           
           <Route path="product" element={<ProductDetails MRP="7500" price="2500" />} />
            <Route path='about' element={<About/>}/>
+           <Route path='wishlist' element={<Wishlist/>}/>
+           <Route path='cart' element={<AddToCart/>}/>
+
+          
      </Route>
            {/* <Route path="/login" element={<Login/>}/>
            <Route path='/signup' element={<Signup/>}/> */}
