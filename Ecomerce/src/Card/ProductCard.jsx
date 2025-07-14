@@ -7,7 +7,7 @@ function ProductCard(props) {
   //  console.log(props);
   // console.log(props.product.Brand_Name);
   const handleWishList = async () => {
-    console.log("hello");
+    // console.log("hello");
   try {
     const { Brand_Name, Product_Name, Actual_Price, Discounted_Price, img } = props.product;
 
@@ -45,7 +45,7 @@ function ProductCard(props) {
   </div>
 
     <img
-      src={props.product.img}
+      src={props.product.Image1}
       alt="T-shirt"
       className="w-full h-60 object-cover transform group-hover:scale-105  duration-300"
     />
