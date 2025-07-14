@@ -28,7 +28,7 @@ function Jeans() {
 
   return (
     <div className="mt-15 ">
-      <h1>helo</h1>
+      {/* <h1>helo</h1> */}
 
      <Products detail={jeansDetails} tableName={tableName} setDetails={setJeansDetails}/>
    </div>
