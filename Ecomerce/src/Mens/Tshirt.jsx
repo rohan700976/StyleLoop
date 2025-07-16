@@ -13,7 +13,7 @@ function Tshirt() {
   useEffect(()=>{
   const  handleProductDetails= async ()=>{
     try {
-      const response= await axios.get('http://localhost:8000/menstshirt/tshirt');
+      const response= await axios.get(`${import.meta.env.VITE_URL}/menstshirt/tshirt`);
      // console.log(response.data);
       if(response.status==200){
         setDetails(response.data)

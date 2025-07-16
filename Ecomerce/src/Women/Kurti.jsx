@@ -9,7 +9,7 @@ function Kurti() {
   useEffect( ()=>{
      const handleProductDetails= async()=>{
     try {
-    const respone= await axios.get('http://localhost:8000/women/womenkurtas');
+    const respone= await axios.get(`${import.meta.env.VITE_URL}/women/womenkurtas`);
     if(respone.status==200){
       setKurtiDetails(respone.data)
 

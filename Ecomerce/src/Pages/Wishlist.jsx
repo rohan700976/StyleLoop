@@ -14,7 +14,7 @@ const Wishlist = () => {
   useEffect(() => {
     const handleWishlist = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/wishlist/get/2');
+        const response = await axios.get(`${import.meta.env.VITE_URL}/wishlist/get/2`);
         if (response.status === 200) {
           setWishListDetails(response.data); // Make sure backend returns array
         }

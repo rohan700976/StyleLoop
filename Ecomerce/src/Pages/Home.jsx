@@ -44,8 +44,8 @@ function Home() {
   useEffect(()=>{
     const handleProductDetails= async ()=>{
     try {
-      const response=await axios.get("http://localhost:8000/menshirt/shirt");
-      const res=await axios.get("http://localhost:8000/women/womanshirt");
+      const response=await axios.get(`${import.meta.env.VITE_URL}/menshirt/shirt`);
+      const res=await axios.get(`${import.meta.env.VITE_URL}/women/womanshirt`);
         // console.log(res);
         // console.log(response);
         if(response.status == 200 ){

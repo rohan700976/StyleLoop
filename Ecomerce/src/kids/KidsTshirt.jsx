@@ -8,7 +8,7 @@ function KidsTshirt() {
     useEffect(()=>{
         const handleProductDetails=async()=>{
             try {
-                const response= await axios.get('http://localhost:8000/kids/kidsboystshirt');
+                const response= await axios.get(`${import.meta.env.VITE_URL}/kids/kidsboystshirt`);
                 console.log(response);
                 if(response.status==200){
                     setKidsTshirtDetails(response.data);

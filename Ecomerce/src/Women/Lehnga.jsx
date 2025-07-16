@@ -10,7 +10,7 @@ function Lehnga() {
   useEffect( ()=>{
      const handleProductDetails= async()=>{
     try {
-    const respone= await axios.get('http://localhost:8000/women/womanlehenga');
+    const respone= await axios.get(`${import.meta.env.VITE_URL}/women/womanlehenga`);
     if(respone.status==200){
       setLehngaDetails(respone.data)
 

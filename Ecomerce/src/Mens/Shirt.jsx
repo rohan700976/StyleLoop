@@ -8,7 +8,7 @@ function Shirt() {
   useEffect( ()=>{
      const handleProductDetails= async()=>{
     try {
-    const respone= await axios.get('http://localhost:8000/menshirt/shirt');
+    const respone= await axios.get(`${import.meta.env.VITE_URL}/menshirt/shirt`);
     if(respone.status==200){
       setShirt(respone.data)
 

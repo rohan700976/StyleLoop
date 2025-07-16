@@ -11,7 +11,7 @@ function ProductCard(props) {
   try {
     const { Brand_Name, Product_Name, Actual_Price, Discounted_Price, img } = props.product;
 
-    const response = await axios.post("http://localhost:8000/wishlist/insert/1", {
+    const response = await axios.post(`${import.meta.env.VITE_URL}/wishlist/insert/1`, {
       Brand_Name,
       Product_Name,
       Actual_Price,

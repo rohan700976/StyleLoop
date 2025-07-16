@@ -28,7 +28,7 @@ export default function FilterSidebar({ tableName, details, setDetails }) {
         console.log(filtered);
         setDetails(filtered);
       } else {
-        const res = await axios.get(`http://localhost:8000/filter/${tableName}/fabric/${selectedFabric}`);
+        const res = await axios.get(`${import.meta.env.VITE_URL}/filter/${tableName}/fabric/${selectedFabric}`);
         setDetails(res.data);
       }
       setFabricToogle(true);
@@ -46,7 +46,7 @@ export default function FilterSidebar({ tableName, details, setDetails }) {
         console.log(filtered);
         setDetails(filtered);
       } else {
-        const res = await axios.get(`http://localhost:8000/filter/${tableName}/size/${selectedSize}`);
+        const res = await axios.get(`${import.meta.env.VITE_URL}/filter/${tableName}/size/${selectedSize}`);
         setDetails(res.data);
       }
       setSizeToogle(true);
@@ -63,7 +63,7 @@ export default function FilterSidebar({ tableName, details, setDetails }) {
         console.log(filtered);
         setDetails(filtered);
       } else {
-        const res = await axios.get(`http://localhost:8000/filter/${tableName}/brand/${selectedBrand}`);
+        const res = await axios.get(`${import.meta.env.VITE_URL}/filter/${tableName}/brand/${selectedBrand}`);
         setDetails(res.data);
       }
       setBrandToogle(true);
@@ -85,7 +85,7 @@ export default function FilterSidebar({ tableName, details, setDetails }) {
         console.log(filtered);
         setDetails(filtered);
       } else {
-        const res = await axios.get(`http://localhost:8000/filter/${tableName}/price/${p1}/${p2}`);
+        const res = await axios.get(`${import.meta.env.VITE_URL}/filter/${tableName}/price/${p1}/${p2}`);
         setDetails(res.data);
       }
       setPriceToogle(true);
@@ -104,7 +104,7 @@ export default function FilterSidebar({ tableName, details, setDetails }) {
         console.log(filtered);
         setDetails(filtered);
       } else {
-        const res = await axios.get(`http://localhost:8000/filter/${tableName}/rating/${selectedRating}`);
+        const res = await axios.get(`${import.meta.env.VITE_URL}/filter/${tableName}/rating/${selectedRating}`);
         setDetails(res.data);
       }
       setRatingToogle(true);
@@ -121,7 +121,7 @@ export default function FilterSidebar({ tableName, details, setDetails }) {
         console.log(filtered);
         setDetails(filtered);
       } else {
-        const res = await axios.get(`http://localhost:8000/filter/${tableName}/occasion/${selectedOccasion}`);
+        const res = await axios.get(`${import.meta.env.VITE_URL}/filter/${tableName}/occasion/${selectedOccasion}`);
         setDetails(res.data);
       }
       setOccasionToogle(true);
@@ -133,7 +133,7 @@ export default function FilterSidebar({ tableName, details, setDetails }) {
     const handleCategory = async (event) => {
     const selectedCategory = event.target.value;
     try {
-      const res = await axios.get(`http://localhost:8000/women/${selectedCategory}`);
+      const res = await axios.get(`${import.meta.env.VITE_URL}/women/${selectedCategory}`);
       setDetails(res.data);
     } catch (error) {
       console.error("Category filter error:", error);
