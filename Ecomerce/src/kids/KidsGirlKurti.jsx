@@ -11,7 +11,7 @@ function KidsGirlKurti() {
   useEffect( ()=>{
      const handleProductDetails= async()=>{
     try {
-    const respone= await axios.get('http://localhost:8000/kids/kidsgirlskurta');
+    const respone= await axios.get(`${import.meta.env.VITE_URL}/kids/kidsgirlskurta`);
     if(respone.status==200){
       setKidsKurtiDetails(respone.data)
 

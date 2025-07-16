@@ -2,14 +2,14 @@
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom'
 import React, { useState } from "react";
 // import "./style.css";
-import KidsGirlKurti from './kids/kidsGirlKurti.jsx';
-import KidsGirlSkirt from './kids/kidsGirlSkirt.jsx';
-import KidsGirlTop from './kids/kidsGirlTop.jsx';
-import KidsJeans from './kids/kidsJeans.jsx';
-import KidsShirt from './kids/kidsShirt.jsx';
-import KidsTshirt from './kids/kidsTshirt.jsx';
+import KidsGirlKurti from './kids/KidsGirlKurti.jsx';
+import KidsGirlSkirt from './kids/KidsGirlSkirt.jsx';
+import KidsGirlTop from './kids/KidsGirlTop.jsx';
+import KidsJeans from './kids/KidsJeans.jsx';
+import KidsShirt from './kids/KidsShirt.jsx';
+import KidsTshirt from './kids/KidsTshirt.jsx';
 
-import GirlShirt from './Women/girlShirt.jsx';
+import GirlShirt from './Women/GirlShirt.jsx';
 import Tshirt from './Mens/Tshirt.jsx'
 import Shirt from './Mens/Shirt.jsx'
 import Jeans from './Mens/Jeans.jsx'
