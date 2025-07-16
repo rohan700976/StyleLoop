@@ -5,20 +5,8 @@ import Card from '../Card/Card'
 import Brand from "./Brand"
 import Choose from './Choose'
 import Products from '../Component/Products'
-import tshirt1 from '../assets/t1.jpg';
-import tshirt2 from '../assets/t2.jpg';
-import tshirt3 from '../assets/t3.jpg';
-import tshirt4 from '../assets/t4.jpg';
-import tshirt5 from '../assets/t5.jpg';
-import tshirt6 from '../assets/t6.jpg';
-import tshirt7 from '../assets/t7.jpg';
-import tshirt8 from '../assets/t8.jpg';
-import lehnga from '../assets/womenImg/l3.jpg'
-import jeans from '../assets/j5.jpg'
-import jeans2 from '../assets/j4.jpg'
-import kurti from '../assets/womenImg/k1.jpg'
-import lehnga2 from '../assets/womenImg/l2.jpg'
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+
+
 import Hero from "./Hero";
 import ProductCard from '../Card/ProductCard'
 import Footer from './Footer';
