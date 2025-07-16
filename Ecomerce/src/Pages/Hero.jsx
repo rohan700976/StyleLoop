@@ -5,7 +5,7 @@ import TrueFocus from '../Component/TrueFocus';
 
 import kurti from '../assets/womenImg/k1.jpg'
 import lehnga from '../assets/womenImg/l1.jpg'
-import jeans from '../assets/j1.jpg'
+import jeans from '../assets/J1.jpg'
 import girlJeans from '../assets/girlJeansImg/g1.jpg'
 import tshirt from '../assets/t1.jpg'
 import shirt from '../assets/shirt1.jpg'
