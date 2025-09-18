@@ -31,42 +31,39 @@ import AddToCart from './Pages/AddToCart.jsx';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
- <Route path='/' element={<Layout />}>
-     <Route path='' element={<Home />} />
-      <Route path="men/tshirt" element={<Tshirt />} />
-      <Route path="men/shirt" element={<Shirt />} />
-      <Route path="men/jeans" element={<Jeans />} />
-     
-      <Route path='women/kurti' element={<Kurti/>}/>
-        <Route path='women/lehnga' element={<Lehnga/>}/>
-          <Route path='women/girljeans' element={<GirlJeans/>}/>
-          <Route path='women/girlshirt' element={<GirlShirt/>}/>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="men/tshirt" element={<Tshirt />} />
+        <Route path="men/shirt" element={<Shirt />} />
+        <Route path="men/jeans" element={<Jeans />} />
 
+        <Route path="women/kurti" element={<Kurti />} />
+        <Route path="women/lehnga" element={<Lehnga />} />
+        <Route path="women/girljeans" element={<GirlJeans />} />
+        <Route path="women/girlshirt" element={<GirlShirt />} />
 
-          {/* kids Route */}
+        <Route path="kids/kidsGirlKurti" element={<KidsGirlKurti />} />
+        <Route path="kids/kidsGirlSkirt" element={<KidsGirlSkirt />} />
+        <Route path="kids/kidsGirTop" element={<KidsGirlTop />} />
+        <Route path="kids/kidsJeans" element={<KidsJeans />} />
+        <Route path="kids/kidsShirt" element={<KidsShirt />} />
+        <Route path="kids/kidsTshirt" element={<KidsTshirt />} />
 
-           {/* <Route path='kids/kidsGirlJeans' element={<kidsGirlJeans/>}/> */}
-          <Route path='kids/kidsGirlKurti' element={<KidsGirlKurti/>}/>
-          <Route path='kids/kidsGirlSkirt' element={<KidsGirlSkirt/>}/>
-          <Route path='kids/kidsGirTop' element={< KidsGirlTop />}/>
-          <Route path='kids/kidsJeans' element={<KidsJeans/>}/>
-          <Route path='kids/kidsShirt' element={<KidsShirt/>}/>
-          <Route path='kids/kidsTshirt' element={<KidsTshirt/>}/>
-          
-          
-          <Route path="product" element={<ProductDetails MRP="7500" price="2500" />} />
-           <Route path='about' element={<About/>}/>
-           <Route path='wishlist' element={<Wishlist/>}/>
-           <Route path='cart' element={<AddToCart/>}/>
+        <Route path="product" element={<ProductDetails MRP="7500" price="2500" />} />
+        <Route path="about" element={<About />} />
+        <Route path="wishlist" element={<Wishlist />} />
+        <Route path="cart" element={<AddToCart />} />
+      </Route>
 
-          
-     </Route>
-           {/* <Route path="/login" element={<Login/>}/>
-           <Route path='/signup' element={<Signup/>}/> */}
-           <Route path='/auth' element={<Auth/>} />
-     </Route>
+      {/* Auth Routes */}
+      <Route path="auth" element={<Auth />}>
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+      </Route>
+    </Route>
   )
-)
+);
+
 
 export default function App() {
   // const [type, setType] = useState("signIn");

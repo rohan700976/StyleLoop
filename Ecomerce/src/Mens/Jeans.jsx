@@ -8,7 +8,7 @@ function Jeans() {
    
     const handleProductDetails=async()=>{
       try {
-         const response = await axios.get(`${import.meta.env.VITE_URL}/mensjeans/jeans`);
+         const response = await axios.get('http://localhost:8000/mensjeans/jeans');
          console.log(response);
          if(response.status==200){
           setJeansDetails(response.data);

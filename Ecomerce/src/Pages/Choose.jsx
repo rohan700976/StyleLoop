@@ -10,7 +10,7 @@ function Choose() {
     <div className='w-full px-4 sm:px-6 lg:px-8'>
       {/* Title */}
       <div className='flex justify-center '>
-        <h1 className='font-bold text-3xl sm:text-4xl lg:text-5xl animate-bounce text-pink-600 text-center'>
+        <h1 className='font-bold text-3xl sm:text-4xl lg:text-5xl animate-bounce text-indigo-600 text-center'>
           Why Choose Us!
         </h1>
       </div>
