@@ -1,92 +1,96 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Login() {
-  const [state, setState] = React.useState({
+  const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const handleChange = (evt) => {
-    const value = evt.target.value;
-    setState({
-      ...state,
-      [evt.target.name]: value,
-    });
+  const navigate = useNavigate();
+
+  // handle input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleOnSubmit = (evt) => {
-    evt.preventDefault();
+  // handle login submit
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:8000/auth/login", {
+        email: formData.email,
+        password: formData.password,
+      });
 
-    const { email, password } = state;
-    alert(`You are login with email: ${email} and password: ${password}`);
+      // ✅ if success
+      toast.success("Login successful!", {
+        position: "top-right",
+        autoClose: 2000,
+      });
 
-    setState({
-      email: "",
-      password: "",
-    });
+      // ✅ navigate after small delay (so toast can be seen)
+      setTimeout(() => {
+        navigate("/"); // change this to your page
+      }, 2000);
+
+      console.log("Login success:", response.data);
+    } catch (error) {
+      // show error toast
+      if (error.response?.data?.message) {
+        toast.error(error.response.data.message);
+      } else {
+        toast.error("Login failed! Please try again.");
+      }
+      console.error("Error occurred during login:", error);
+    }
   };
 
   return (
-    <div className="absolute top-0 left-0 h-full w-1/2 flex items-center justify-center transition-transform duration-700 z-[2]">
-      <form
-        onSubmit={handleOnSubmit}
-        className="bg-white flex flex-col items-center justify-center px-12 text-center w-full h-full"
+    <form
+      onSubmit={handleLogin}
+      className="bg-white flex items-center justify-center flex-col px-12 h-full text-center"
+    >
+      <h1 className="font-bold text-2xl m-0">Sign in</h1>
+
+      <input
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        placeholder="Email"
+        className="bg-gray-200 py-3 px-4 my-2 w-full"
+        required
+      />
+
+      <input
+        type="password"
+        name="password"
+        value={formData.password}
+        onChange={handleChange}
+        placeholder="Password"
+        className="bg-gray-200 py-3 px-4 my-2 w-full"
+        required
+      />
+
+      <a href="#" className="text-gray-700 text-sm my-4">
+        Forgot your password?
+      </a>
+
+      <button
+        type="submit"
+        className="rounded-full bg-blue-500 text-white text-xs font-bold py-3 px-12 tracking-wider uppercase active:scale-95"
       >
-        <h1 className="text-3xl font-bold mb-2">Sign in</h1>
-
-        <div className="flex justify-center my-4">
-          <a
-            href="#"
-            className="border border-gray-300 rounded-full w-10 h-10 flex items-center justify-center mx-1 text-gray-700 hover:text-blue-600"
-          >
-            <i className="fab fa-facebook-f" />
-          </a>
-          <a
-            href="#"
-            className="border border-gray-300 rounded-full w-10 h-10 flex items-center justify-center mx-1 text-gray-700 hover:text-red-600"
-          >
-            <i className="fab fa-google-plus-g" />
-          </a>
-          <a
-            href="#"
-            className="border border-gray-300 rounded-full w-10 h-10 flex items-center justify-center mx-1 text-gray-700 hover:text-blue-500"
-          >
-            <i className="fab fa-linkedin-in" />
-          </a>
-        </div>
-
-        <span className="text-sm mb-2 text-gray-600">or use your account</span>
-
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={state.email}
-          onChange={handleChange}
-          className="w-full bg-gray-200 border-none px-4 py-3 my-2 rounded text-sm focus:outline-none"
-        />
-
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={state.password}
-          onChange={handleChange}
-          className="w-full bg-gray-200 border-none px-4 py-3 my-2 rounded text-sm focus:outline-none"
-        />
-
-        <a href="#" className="text-sm text-gray-600 mt-2 mb-4 hover:underline">
-          Forgot your password?
-        </a>
-
-        <button
-          type="submit"
-          className="bg-[#ff4b2b] text-white rounded-full px-10 py-3 text-xs font-bold uppercase tracking-widest transition transform active:scale-95 focus:outline-none"
-        >
-          Sign In
-        </button>
-      </form>
-    </div>
+        Sign In
+      </button>
+    </form>
   );
 }
 

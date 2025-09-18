@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import demo from '../assets/SaleImg/sale.png';
 import axios from 'axios';
+import { X } from 'lucide-react'; // ❌ icon (from lucide-react, already in shadcn/ui setup)
 
 const Wishlist = () => {
   const [wishListDetails, setWishListDetails] = useState([]);
@@ -11,10 +12,23 @@ const Wishlist = () => {
     navigate('/');
   };
 
+  // ✅ Remove wishlist item
+  const handleRemove = async (id) => {
+    // console.log("button clicked");
+    try {
+      const response = await axios.delete(`${import.meta.env.VITE_URL}/wishlist/delete/${id}`);
+      if (response.status === 200) {
+        setWishListDetails((prev) => prev.filter((item) => item.wishlist_id !== id));
+      }
+    } catch (error) {
+      console.error('Error removing wishlist item:', error);
+    }
+  };
+
   useEffect(() => {
     const handleWishlist = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_URL}/wishlist/get/2`);
+        const response = await axios.get(`${import.meta.env.VITE_URL}/wishlist/getdata`);
         if (response.status === 200) {
           setWishListDetails(response.data); // Make sure backend returns array
         }
@@ -23,24 +37,31 @@ const Wishlist = () => {
       }
     };
 
-    handleWishlist(); // ✅ CALL THE FUNCTION
+    handleWishlist();
   }, []);
 
   return (
     <>
-      {/* Show wishlist items if any */}
       {wishListDetails.length > 0 ? (
-        <div className="flex flex-wrap gap-4 justify-center p-4">
+        <div className="flex flex-wrap gap-4 justify-center p-4 mt-18">
           {wishListDetails.map((item, index) => (
             <div
               key={index}
               className="w-40 sm:w-68 h-102 sm:h-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300 bg-white relative group"
             >
+              {/* ❌ Remove Button */}
+              <button
+                onClick={() => handleRemove(item.wishlist_id)}
+                className="absolute top-2 right-2 bg-white rounded-full shadow-md p-1 hover:bg-blue-100 hover:text-black"
+              >
+                <X className="w-5 h-5 text-gray-600" />
+              </button>
+
               <div className="w-full h-60 bg-gray-100 overflow-hidden">
                 <img
                   src={item.Product_Img}
                   alt={item.Product_Name}
-                  className="w-full h-60 object-cover transform group-hover:scale-105 duration-300"
+                  className="w-full h-60 object-cover "
                 />
               </div>
 
@@ -71,7 +92,6 @@ const Wishlist = () => {
           ))}
         </div>
       ) : (
-        // Show Empty Wishlist
         <div className="flex flex-col items-center justify-center min-h-screen bg-white px-4">
           <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">YOUR WISHLIST IS EMPTY</h2>
           <p className="text-gray-500 text-center max-w-md mb-6">
